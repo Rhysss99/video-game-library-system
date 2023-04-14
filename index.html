@@ -48,25 +48,38 @@
         </div>
         <button class="add-button" type="button">ADD A NEW GAME!</button>
       </form>
-
-      <main id="game-library">
-        <header id="library-header">
-            <h2>Games played</h2>
-            <h2>Games you want to play</h2>
-            <div class="filter">
-                <button class="filterBtn">Filter by?</button>
-                <div class="filter-content">
-                  <a href="#">Games played</a>
-                  <a href="#">Games you want to play</a>
-                </div>
-              </div>
-            <input type="text" id="gameSearch" onkeyup="searchFunction()" placeholder="Search for games...">
-        </header>
-
-        </div>
-      </main>
-
-
     </div>
+
+    <main id="game-library">
+      <header id="library-header">
+        <h2>Games played</h2>
+        <h2>Games you want to play</h2>
+        <div class="filter">
+          <button class="filterBtn">Filter by?</button>
+          <div class="filter-content">
+            <a href="#">Games played</a>
+            <a href="#">Games you want to play</a>
+          </div>
+        </div>
+        <input
+          type="text"
+          id="gameSearch"
+          onkeyup="searchFunction()"
+          placeholder="Search for games..."
+        />
+
+        <table id="games-list">
+          <thead id="games-info">
+            <tr>
+              <td>NAME</td>
+              <td>GENRE</td>
+              <td>PLAYED</td>
+              <td>TIME WASTED</td>
+            </tr>
+          </thead>
+          <tbody id="games-body"></tbody>
+        </table>
+      </header>
+    </main>
   </body>
 </html>
