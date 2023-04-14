@@ -8,10 +8,8 @@
     <link href="style.css" rel="stylesheet" />
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body id="content">
     <div id="game-form">
-      <div class="background"></div>
-
       <header>
         <img src="images/logo.png" alt="logo" />
         <h1 id="logo">Video Game Library</h1>
@@ -54,32 +52,32 @@
       <header id="library-header">
         <h2>Games played</h2>
         <h2>Games you want to play</h2>
-        <div class="filter">
-          <button class="filterBtn">Filter by?</button>
-          <div class="filter-content">
-            <a href="#">Games played</a>
-            <a href="#">Games you want to play</a>
-          </div>
-        </div>
-        <input
-          type="text"
-          id="gameSearch"
-          onkeyup="searchFunction()"
-          placeholder="Search for games..."
-        />
-
-        <table id="games-list">
-          <thead id="games-info">
-            <tr>
-              <td>NAME</td>
-              <td>GENRE</td>
-              <td>PLAYED</td>
-              <td>TIME WASTED</td>
-            </tr>
-          </thead>
-          <tbody id="games-body"></tbody>
-        </table>
       </header>
+      <div class="filter">
+        <button class="filterBtn">Filter by?</button>
+        <div class="filter-content">
+          <a href="#">Games played</a>
+          <a href="#">Games you want to play</a>
+        </div>
+      </div>
+      <input
+        type="text"
+        id="gameSearch"
+        onkeyup="searchFunction()"
+        placeholder="Search for games..."
+      />
+
+      <table id="games-list">
+        <thead id="games-info">
+          <tr>
+            <td>NAME</td>
+            <td>GENRE</td>
+            <td>PLAYED</td>
+            <td>TIME WASTED</td>
+          </tr>
+        </thead>
+        <tbody id="games-body"></tbody>
+      </table>
     </main>
   </body>
 </html>
