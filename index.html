@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>video-game-library</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="game-form">
+      <div class="background"></div>
+
+      <header>
+        <img src="images/logo.png" alt="logo" />
+        <h1 id="logo">Video Game Library</h1>
+      </header>
+
+      <form>
+        <div class="form-input">
+          <input id="game-name" type="text" name="game-name" required />
+          <span class="placeholder">Name of the game?</span>
+        </div>
+
+        <div class="form-input">
+          <input id="game-genre" type="text" name="game-genre" required />
+          <span class="placeholder">Main genre of the game?</span>
+        </div>
+
+        <label class="checkbox">
+          <span class="input-checkbox">
+            <input type="checkbox" name="checkbox" />
+          </span>
+          <span class="label-checkbox"
+            >Tick the checkbox if you have played the game!</span
+          >
+        </label>
+
+        <div class="form-input">
+          <input
+            id="game-time-played"
+            type="text"
+            name="game-time-played"
+            required
+          />
+          <span class="placeholder">Time wasted?</span>
+        </div>
+        <button class="add-button" type="button">ADD A NEW GAME!</button>
+      </form>
+
+      <main id="game-library">
+        <header id="library-header">
+            <h2>Games played</h2>
+            <h2>Games you want to play</h2>
+            <div class="filter">
+                <button class="filterBtn">Filter by?</button>
+                <div class="filter-content">
+                  <a href="#">Games played</a>
+                  <a href="#">Games you want to play</a>
+                </div>
+              </div>
+            <input type="text" id="gameSearch" onkeyup="searchFunction()" placeholder="Search for games...">
+        </header>
+
+        </div>
+      </main>
+
+
+    </div>
+  </body>
+</html>
