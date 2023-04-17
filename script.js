@@ -16,6 +16,29 @@ function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
   myGameLibrary.push(game);
 }
 
+function displayArray() {
+  const gameList = document.querySelector('#table-body');
+  gameList.textContent = '';
+
+  myGameLibrary.forEach((game) => {
+    const gameRow = document.createElement('tr');
+    gameRow.classList.add('game-info-row');
+    gameList.appendChild(gameRow);
+
+    const gameDetails = [
+      game.gameName,
+      game.gameGenre,
+      game.gamePlayed,
+      game.gameTimePlayed,
+    ];
+    gameDetails.forEach((detail) => {
+      const gameDetail = document.createElement('td');
+      gameDetail.textContent = detail;
+      gameRow.appendChild(gameDetail);
+    });
+  });
+}
+
 function validation() {
   const form = document.querySelector('form');
   const gameNameInput = document.querySelector('#game-name');
@@ -36,6 +59,7 @@ function validation() {
       gameTimePlayedInput.value
     );
     form.reset();
+    displayArray();
   }
 }
 
