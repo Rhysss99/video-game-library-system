@@ -113,4 +113,33 @@ input {
   flex-direction: column;
   width: calc(100% - 360px);
   padding: 30px;
+  border: 4px solid black;
+}
+#library-header {
+  border: 4px solid black;
+  display: flex;
+
+  width: 70%;
+  margin-bottom: 30px;
+  padding: 0 25px;
+  font-size: large;
+}
+
+#gameSearch {
+  width: 100%;
+  padding: 12px 20px 12px 40px;
+  border: 4px solid black;
+  margin-bottom: 12px;
+}
+
+#game-list {
+  width: 70%;
+  border-collapse: collapse;
+}
+#game-list td {
+  padding: 25px;
+}
+#game-info {
+  background-color: blue;
+  color: white;
 }

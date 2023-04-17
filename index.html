@@ -49,10 +49,12 @@
     </div>
 
     <main id="game-library">
-      <header id="library-header">
-        <h2>Games played</h2>
-        <h2>Games you want to play</h2>
-      </header>
+      <div id="library-header">
+        <p>Games played:</p>
+        <p>Games you want to play:</p>
+        <p>Total games:</p>
+      </div>
+
       <div class="filter">
         <button class="filterBtn">Filter by?</button>
         <div class="filter-content">
@@ -62,13 +64,13 @@
       </div>
       <input
         type="text"
-        id="gameSearch"
+        id="game-search"
         onkeyup="searchFunction()"
         placeholder="Search for games..."
       />
 
-      <table id="games-list">
-        <thead id="games-info">
+      <table id="game-list">
+        <thead id="game-info">
           <tr>
             <td>NAME</td>
             <td>GENRE</td>
@@ -76,7 +78,7 @@
             <td>TIME WASTED</td>
           </tr>
         </thead>
-        <tbody id="games-body"></tbody>
+        <tbody id="game-body"></tbody>
       </table>
     </main>
   </body>
