@@ -55,12 +55,11 @@
         <p class="total-games">Total Games: 0</p>
       </div>
 
-      <div class="filter">
-        <button class="filterBtn">Filter by?</button>
-        <div class="filter-content">
-          <a href="#">Games played</a>
-          <a href="#">Games you want to play</a>
-        </div>
+      <select id="filter">
+        <option value="all">All Games</option>
+        <option value="true">Played Games</option>
+        <option value="false">Not Played Games</option>
+      </select>
       </div>
       <input
         type="text"
@@ -68,19 +67,20 @@
         onkeyup="searchFunction()"
         placeholder="Search for games..."
       />
-
-      <table id="game-list">
-        <thead id="game-info">
-          <tr>
-            <td>NAME</td>
-            <td>GENRE</td>
-            <td>PLAYED</td>
-            <td>TIME WASTED</td>
-            <td>REMOVE</td>
-          </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
+      <div class="table-container">
+        <table id="game-list">
+          <thead id="game-info">
+            <tr>
+              <td>NAME</td>
+              <td>GENRE</td>
+              <td>PLAYED</td>
+              <td>TIME WASTED</td>
+              <td>REMOVE</td>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
     </main>
   </body>
 </html>

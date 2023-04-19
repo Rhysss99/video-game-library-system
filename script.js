@@ -33,22 +33,27 @@ function showTotalGameInfo() {
   playedCounter = myGameLibrary.filter((game) => game.gamePlayed).length;
   notPlayedCounter = myGameLibrary.filter((game) => !game.gamePlayed).length;
 
-  console.log(playedCounter);
-  console.log(notPlayedCounter);
-  console.log(myGameLibrary.length);
-
   totalGamesPlayed.textContent = `Played Games: ${playedCounter}`;
   totalGamesNotPlayed.textContent = `Not Played Games: ${notPlayedCounter}`;
   totalGames.textContent = `Total Games: ${myGameLibrary.length}`;
 }
 
 // Generates a new row and details for each game detail for each game added to the array
-function displayArray() {
+function displayArray(filter) {
   showTotalGameInfo();
   const gameList = document.querySelector('#table-body');
   gameList.textContent = '';
 
-  myGameLibrary.forEach((game, index) => {
+  let filteredGames;
+  if (filter === 'true') {
+    filteredGames = myGameLibrary.filter((game) => game.gamePlayed === true);
+  } else if (filter === 'false') {
+    filteredGames = myGameLibrary.filter((game) => game.gamePlayed === false);
+  } else {
+    filteredGames = myGameLibrary;
+  }
+
+  filteredGames.forEach((game, index) => {
     const gameRow = document.createElement('tr');
     gameRow.classList.add('game-info-row');
     gameList.appendChild(gameRow);
@@ -87,6 +92,11 @@ function displayArray() {
     });
   });
 }
+
+document.getElementById('filter').addEventListener('change', (event) => {
+  const filter = event.target.value;
+  displayArray(filter);
+});
 
 // Calls the addGameToLibrary and DisplayArray functions if the user enters values inside the input boxes
 function validation() {
