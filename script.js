@@ -2,6 +2,7 @@ const addGameButton = document.querySelector('.add-button');
 
 const myGameLibrary = [];
 
+// Creates a game class and contains a constructor for the game class containing the 4 parameters below
 class Game {
   constructor(gameName, gameGenre, gamePlayed, gameTimePlayed) {
     this.gameName = gameName;
@@ -9,13 +10,17 @@ class Game {
     this.gamePlayed = gamePlayed;
     this.gameTimePlayed = gameTimePlayed;
   }
-}
 
+  togglePlayedStatus() {
+    this.gamePlayed = !this.gamePlayed;
+  }
+}
+// Creates a new game object and adds it to the myGameLibrary array
 function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
   const game = new Game(gameName, gameGenre, gamePlayed, gameTimePlayed);
   myGameLibrary.push(game);
 }
-
+// Generates a new row and details for each game detail for each game added to the array
 function displayArray() {
   const gameList = document.querySelector('#table-body');
   gameList.textContent = '';
@@ -31,14 +36,26 @@ function displayArray() {
       game.gamePlayed,
       game.gameTimePlayed,
     ];
-    gameDetails.forEach((detail) => {
+    gameDetails.forEach((detail, index) => {
       const gameDetail = document.createElement('td');
       gameDetail.textContent = detail;
+
+      if (index === 2) {
+        // Add click event listener to the "Played" column
+        gameDetail.classList.add('game-played');
+        gameDetail.addEventListener('click', () => {
+          game.togglePlayedStatus();
+          gameDetail.textContent = game.gamePlayed ? 'True' : 'False';
+          // eslint-disable-next-line no-console
+          console.log(game.gamePlayed);
+        });
+      }
+
       gameRow.appendChild(gameDetail);
     });
   });
 }
-
+// Calls the addGameToLibrary and DisplayArray functions if the user enters values inside the input boxes
 function validation() {
   const form = document.querySelector('form');
   const gameNameInput = document.querySelector('#game-name');
@@ -63,4 +80,5 @@ function validation() {
   }
 }
 
+// on click calls the validate function
 addGameButton.addEventListener('click', validation);
