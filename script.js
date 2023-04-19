@@ -20,12 +20,16 @@ function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
   const game = new Game(gameName, gameGenre, gamePlayed, gameTimePlayed);
   myGameLibrary.push(game);
 }
+
+function removeGameFromLibrary(index) {
+  myGameLibrary.splice(index, 1);
+}
 // Generates a new row and details for each game detail for each game added to the array
 function displayArray() {
   const gameList = document.querySelector('#table-body');
   gameList.textContent = '';
 
-  myGameLibrary.forEach((game) => {
+  myGameLibrary.forEach((game, index) => {
     const gameRow = document.createElement('tr');
     gameRow.classList.add('game-info-row');
     gameList.appendChild(gameRow);
@@ -35,20 +39,29 @@ function displayArray() {
       game.gameGenre,
       game.gamePlayed,
       game.gameTimePlayed,
+      game.gameRemove,
     ];
-    gameDetails.forEach((detail, index) => {
+    gameDetails.forEach((detail, detailIndex) => {
       const gameDetail = document.createElement('td');
       gameDetail.textContent = detail;
 
-      if (index === 2) {
+      if (detailIndex === 2) {
         // Add click event listener to the "Played" column
         gameDetail.classList.add('game-played');
         gameDetail.addEventListener('click', () => {
           game.togglePlayedStatus();
-          gameDetail.textContent = game.gamePlayed ? 'True' : 'False';
-          // eslint-disable-next-line no-console
-          console.log(game.gamePlayed);
+          gameDetail.textContent = game.gamePlayed ? 'true' : 'false';
         });
+      }
+      if (detailIndex === 4) {
+        gameDetail.classList.add('game-remove');
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', () => {
+          removeGameFromLibrary(index);
+          gameRow.remove();
+        });
+        gameDetail.appendChild(removeButton);
       }
 
       gameRow.appendChild(gameDetail);
