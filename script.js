@@ -24,8 +24,27 @@ function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
 function removeGameFromLibrary(index) {
   myGameLibrary.splice(index, 1);
 }
+function showTotalGameInfo() {
+  const totalGamesPlayed = document.querySelector('.games-played');
+  const totalGamesNotPlayed = document.querySelector('.games-not-played');
+  const totalGames = document.querySelector('.total-games');
+  let playedCounter = 0;
+  let notPlayedCounter = 0;
+  playedCounter = myGameLibrary.filter((game) => game.gamePlayed).length;
+  notPlayedCounter = myGameLibrary.filter((game) => !game.gamePlayed).length;
+
+  console.log(playedCounter);
+  console.log(notPlayedCounter);
+  console.log(myGameLibrary.length);
+
+  totalGamesPlayed.textContent = `Played Games: ${playedCounter}`;
+  totalGamesNotPlayed.textContent = `Not Played Games: ${notPlayedCounter}`;
+  totalGames.textContent = `Total Games: ${myGameLibrary.length}`;
+}
+
 // Generates a new row and details for each game detail for each game added to the array
 function displayArray() {
+  showTotalGameInfo();
   const gameList = document.querySelector('#table-body');
   gameList.textContent = '';
 
@@ -68,6 +87,7 @@ function displayArray() {
     });
   });
 }
+
 // Calls the addGameToLibrary and DisplayArray functions if the user enters values inside the input boxes
 function validation() {
   const form = document.querySelector('form');
