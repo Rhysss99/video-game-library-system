@@ -1,6 +1,6 @@
 const addGameButton = document.querySelector('.add-button');
 
-const myGameLibrary = [];
+let myGameLibrary = [];
 
 // Creates a game class and contains a constructor for the game class containing the 4 parameters below
 class Game {
@@ -15,6 +15,14 @@ class Game {
     this.gamePlayed = !this.gamePlayed;
   }
 }
+(function () {
+  if (localStorage.getItem('games') === null) {
+    myGameLibrary = [];
+  } else {
+    const gamesLocalStorage = JSON.parse(localStorage.getItem('games'));
+    myGameLibrary = gamesLocalStorage;
+  }
+})();
 // Creates a new game object and adds it to the myGameLibrary array
 function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
   const game = new Game(gameName, gameGenre, gamePlayed, gameTimePlayed);
@@ -23,6 +31,7 @@ function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
 
 function removeGameFromLibrary(index) {
   myGameLibrary.splice(index, 1);
+  localStorage.setItem('games', JSON.stringify(myGameLibrary));
 }
 function showTotalGameInfo() {
   const totalGamesPlayed = document.querySelector('.games-played');
@@ -40,6 +49,9 @@ function showTotalGameInfo() {
 
 // Generates a new row and details for each game detail for each game added to the array
 function displayArray(filter) {
+  // save array to local storage
+  localStorage.setItem('games', JSON.stringify(myGameLibrary));
+
   showTotalGameInfo();
   const gameList = document.querySelector('#table-body');
   gameList.textContent = '';
@@ -122,6 +134,19 @@ function validation() {
     displayArray();
   }
 }
-
+displayArray();
 // on click calls the validate function
 addGameButton.addEventListener('click', validation);
+
+/* 
+Bugs:
+-When the user refreshes the page they can no longer amend the value inside 'played'
+-When the user changes the value of 'played' this is not updated in local storage
+
+
+Possible Additions:
+-Add a 'remove all' button
+-Add a backend instead of using local storage
+-Improve CSS
+
+*/
