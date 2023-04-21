@@ -15,23 +15,29 @@ class Game {
     this.gamePlayed = !this.gamePlayed;
   }
 }
-(function () {
-  if (localStorage.getItem('games') === null) {
-    myGameLibrary = [];
-  } else {
-    const gamesLocalStorage = JSON.parse(localStorage.getItem('games'));
-    myGameLibrary = gamesLocalStorage;
-  }
-})();
+if (localStorage.getItem('games') === null) {
+  myGameLibrary = [];
+} else {
+  const gamesLocalStorage = JSON.parse(localStorage.getItem('games'));
+  myGameLibrary = gamesLocalStorage.map(
+    ({ gameName, gameGenre, gamePlayed, gameTimePlayed }) =>
+      new Game(gameName, gameGenre, gamePlayed, gameTimePlayed)
+  );
+}
+
 // Creates a new game object and adds it to the myGameLibrary array
 function addGameToLibrary(gameName, gameGenre, gamePlayed, gameTimePlayed) {
   const game = new Game(gameName, gameGenre, gamePlayed, gameTimePlayed);
   myGameLibrary.push(game);
 }
 
+function saveLibraryToStorage() {
+  localStorage.setItem('games', JSON.stringify(myGameLibrary));
+}
+
 function removeGameFromLibrary(index) {
   myGameLibrary.splice(index, 1);
-  localStorage.setItem('games', JSON.stringify(myGameLibrary));
+  saveLibraryToStorage();
 }
 function showTotalGameInfo() {
   const totalGamesPlayed = document.querySelector('.games-played');
@@ -50,7 +56,7 @@ function showTotalGameInfo() {
 // Generates a new row and details for each game detail for each game added to the array
 function displayArray(filter) {
   // save array to local storage
-  localStorage.setItem('games', JSON.stringify(myGameLibrary));
+  saveLibraryToStorage();
 
   showTotalGameInfo();
   const gameList = document.querySelector('#table-body');
@@ -86,6 +92,7 @@ function displayArray(filter) {
         gameDetail.classList.add('game-played');
         gameDetail.addEventListener('click', () => {
           game.togglePlayedStatus();
+          saveLibraryToStorage();
           gameDetail.textContent = game.gamePlayed ? 'true' : 'false';
         });
       }
